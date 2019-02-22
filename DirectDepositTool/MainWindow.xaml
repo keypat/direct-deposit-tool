@@ -1,0 +1,14 @@
+﻿<Window x:Class="DirectDepositTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DirectDepositTool"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Direct Deposit Tool" Height="61" Margin="226,20,225.333,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="36" HorizontalAlignment="Center"/>
+        <TextBox x:Name="customerNumber" HorizontalAlignment="Left" Height="23" Margin="90,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" MaxLines="1" MaxLength="12"/>
+
+    </Grid>
+</Window>
