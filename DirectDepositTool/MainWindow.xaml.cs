@@ -1,63 +1,53 @@
-﻿using CsvHelper;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using System.Reflection;
 using System.Windows;
 
 namespace DirectDepositTool
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private IEnumerable<EmployeeBankingInfo> employeeBankingInfo;
-        private IEnumerable<Payroll> payrollItems;
-        private IEnumerable<Credit> credits;
-        
+        private IEnumerable<Credit> _credits;
+        private string _payrollFileName = @"testPayroll.csv";
+        private string _employeeBankingFileName = @"testEmployees.csv";
+        private readonly Helper _helper = new Helper();
+        public static readonly log4net.ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public MainWindow()
         {
             InitializeComponent();
-            ParseFiles();
-            MergeData();
-            int i = 5;
-            string j = i.ToString("D4");
+            Helper.PopulateSavedFields(this);
         }
 
-        private void MergeData()
+
+        private void BtnPayrollFile_Click(object sender, RoutedEventArgs e)
         {
-            IEnumerable<Credit> credits = payrollItems.Join(employeeBankingInfo.Where(e=>e.accountNum>0&&e.routingNum>0),
-                payroll => payroll.name,
-                employee => employee.name,
-                (payrollItem, employee) => new Credit()
-                {
-                    name = payrollItem.name,
-                    date = payrollItem.date,
-                    accountNum = employee.accountNum.Value,
-                    routingNum = employee.routingNum.Value,
-                    amount = payrollItem.amount
-                }).ToList();
+            Helper.GetFileName(out _payrollFileName);
         }
 
-        private void ParseFiles()
+        private void BtnEmployeeFile_Click(object sender, RoutedEventArgs e)
         {
-            using (var reader = new StreamReader("testEmployees.csv"))
-            using (var csv = new CsvReader(reader))
+            Helper.GetFileName(out _employeeBankingFileName);
+        }
+
+        private void BtnCreateFile_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                csv.Configuration.RegisterClassMap<EmployeeBankingInfoMap>();
-                employeeBankingInfo = csv.GetRecords<EmployeeBankingInfo>().ToList();
+                _helper.ProcessInputs(out _credits, _employeeBankingFileName, _payrollFileName);
+
+                var scotiaFileWriter = new Scotia105Helper();
+                scotiaFileWriter.CreateFile(_credits, this);
+                Helper.SaveChangedFields(this);
+                Helper.ShowLogFileAlert();
             }
-            using (var reader = new StreamReader("testPayroll.csv"))
-            using (var csv = new CsvReader(reader))
+            catch(Exception ex)
             {
-                csv.Configuration.RegisterClassMap<PayrollMap>();
-                payrollItems = csv.GetRecords<Payroll>().ToList();
+                Log.Error(ex.StackTrace);
+                Helper.ShowLogFileAlert("Error in program. Open log file?", "ERROR");
             }
-        }
-
-        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
 
         }
+
     }
 }

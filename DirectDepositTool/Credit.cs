@@ -9,5 +9,6 @@ namespace DirectDepositTool
         public int routingNum;
         public int accountNum;
         public DateTime date;
+        public int transNum;
     }
 }

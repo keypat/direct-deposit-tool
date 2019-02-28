@@ -1,7 +1,24 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DirectDepositTool.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FileCreationNumber" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="OrigShortName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Keyur Corp</Value>
+    </Setting>
+    <Setting Name="OrigLongName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Keyur's Long corp name</Value>
+    </Setting>
+    <Setting Name="CustomerNumber" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9876543210</Value>
+    </Setting>
+    <Setting Name="ReturnTransitNumber" Type="System.String" Scope="User">
+      <Value Profile="(Default)">54321</Value>
+    </Setting>
+    <Setting Name="ReturnAccountNumber" Type="System.String" Scope="User">
+      <Value Profile="(Default)">987654321012</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
