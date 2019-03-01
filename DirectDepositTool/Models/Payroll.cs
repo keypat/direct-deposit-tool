@@ -3,7 +3,7 @@ using System;
 
 namespace DirectDepositTool
 {
-    internal class Payroll
+    public class Payroll
     {
         public string Name;
         public int? TransNum;
@@ -13,7 +13,7 @@ namespace DirectDepositTool
         public string Memo;
     }
 
-    internal sealed class PayrollMap: ClassMap<Payroll>
+    public class PayrollMap: ClassMap<Payroll>
     {
         public PayrollMap()
         {
@@ -21,7 +21,7 @@ namespace DirectDepositTool
             Map(m => m.TransNum).Name("NUM").Default(-1);
             Map(m => m.Date).Name("DATE").Default(DateTime.Today);
             Map(m => m.Amount).Name("AMOUNT").Default(0);
-            Map(m => m.Account).Name("ACCOUNT").Default(-1);
+            Map(m => m.Account).Name("ACCOUNT").Default(string.Empty);
             Map(m => m.Memo).Name("MEMO").Default(string.Empty);
         }
     }
