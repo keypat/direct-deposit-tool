@@ -3,11 +3,12 @@
 ![](https://github.com/keypat/direct-deposit-tool/blob/master/GUI.PNG)
 generate direct deposit files from quickbooks payroll and employee reports
 
-### File Creation Number
-####   AutoIncremented. You can change it if you feel the need to, but it will not update the global value. (The auto increment will increment from the saved value next time)
-### Customer Number
-####   Positive integer
-####   10 digits
+|Field|Description|
+|-----|-----------|
+|File Creation Number|+AutoIncremented
++You can change it if you feel the need to, but it will not update the global value. (The auto increment will increment from the saved value next time)|
+|Customer Number|+Positive integer
++10 digits|
 ### Originator Short Name
 ####   Alphanumeric
 ####   Max 15 characters
