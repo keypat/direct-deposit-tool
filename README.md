@@ -11,8 +11,8 @@
 |Originator Long Name|Alphanumeric. Max 30 characters|
 |Return Branch Transit Number|Positive integer. 5 digits|
 |Return Branch Account Number|Positive integer. Max 12 digits|
-|Payroll File Button|Select .csv file with payroll information **Refer To Appendix A**|
-|Employee File Button|Select .csv file with employee banking information **Refer To Appendix A**|
+|Payroll File Button|Select .csv file with payroll information [**Refer To Appendix A**](https://github.com/keypat/direct-deposit-tool/blob/master/README.md#appendix-a)|
+|Employee File Button|Select .csv file with employee banking information [**Refer To Appendix A**](https://github.com/keypat/direct-deposit-tool/blob/master/README.md#appendix-a)|
 |Create File Button|You will get a prompt to save the file to a location of your choosing|
 #### You will get a pop up after execution asking whether you would like to view the log file.
 
