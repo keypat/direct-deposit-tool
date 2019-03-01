@@ -2,7 +2,7 @@
 
 namespace DirectDepositTool
 {
-    internal class EmployeeBankingInfo
+    public class EmployeeBankingInfo
     {
         public string name;
         public int? accountNum;

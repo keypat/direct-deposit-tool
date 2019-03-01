@@ -18,16 +18,18 @@
     <PublishUrl>D:\Documents\DirectDepositTool\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>https://github.com/keypat/direct-deposit-tool/tree/published/app/</UpdateUrl>
     <ProductName>Direct Deposit Tool</ProductName>
     <PublisherName>Keyur Patel</PublisherName>
-    <ApplicationRevision>4</ApplicationRevision>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -99,7 +101,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper.cs" />
-    <Compile Include="PaymentOriginator.cs" />
+    <Compile Include="Models\PaymentOriginator.cs" />
     <Compile Include="Scotia105Helper.cs" />
     <Compile Include="Settings.cs" />
     <Page Include="MainWindow.xaml">
@@ -110,23 +112,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Credit.cs" />
+    <Compile Include="Models\Credit.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Payroll.cs">
+    <Compile Include="Models\Payroll.cs">
     </Compile>
-    <Compile Include="EmployeeBankingInfo.cs">
+    <Compile Include="Models\EmployeeBankingInfo.cs">
     </Compile>
     <None Include="DirectDepositTool_TemporaryKey.pfx" />
     <Content Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="testEmployees.csv">
+    <None Include="TestData\testEmployees.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="testPayroll.csv">
+    <None Include="TestData\testPayroll.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
