@@ -10,6 +10,12 @@ namespace DirectDepositTool
         private decimal _creditTotalValue;
         private readonly List<string> _rows = new List<string>();
 
+        public override void GenerateFileFromInputs(string employeeBankingFileName, string payrollFileName, MainWindow mw)
+        {
+            ProcessInputs(out var credits, employeeBankingFileName, payrollFileName);
+            CreateFile(credits, mw);
+        }
+
         public void CreateFile(IEnumerable<Credit> credits, MainWindow mw)
         {
 
@@ -109,5 +115,6 @@ namespace DirectDepositTool
 
             ValidateAndAddRow(row);
         }
+
     }
 }

@@ -10,7 +10,7 @@ namespace DirectDepositTool
         private IEnumerable<Credit> _credits;
         private string _payrollFileName = @"TestData/testPayroll.csv";
         private string _employeeBankingFileName = @"TestData/testEmployees.csv";
-        private readonly Helper _helper = new Helper();
+        private readonly Helper _helper = new Scotia105Helper();
         public static readonly log4net.ILog Log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public MainWindow()
@@ -33,9 +33,8 @@ namespace DirectDepositTool
         {
             try
             {
-                _helper.ProcessInputs(out _credits, _employeeBankingFileName, _payrollFileName);
+                _helper.GenerateFileFromInputs(_employeeBankingFileName, _payrollFileName, this);
                
-                (new Scotia105Helper()).CreateFile(_credits, this);
                 Helper.SaveChangedFields(this);
                 Helper.ShowLogFileAlert();
             }

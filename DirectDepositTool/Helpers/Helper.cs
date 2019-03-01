@@ -16,6 +16,8 @@ namespace DirectDepositTool
         public static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private string _outputFileName = @"testOutput.txt";
 
+        public virtual void GenerateFileFromInputs(string employeeBankingFileName, string payrollFileName, MainWindow mw) { throw new NotImplementedException(); }
+
         public void ProcessInputs(out IEnumerable<Credit> credits, string employeeBankingFileName = null,
             string payrollFileName = null)
         {
