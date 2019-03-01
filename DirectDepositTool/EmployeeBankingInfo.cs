@@ -1,9 +1,4 @@
 ﻿using CsvHelper.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DirectDepositTool
 {
@@ -19,7 +14,7 @@ namespace DirectDepositTool
     {
         public EmployeeBankingInfoMap()
         {
-            Map(m => m.name).Name("Employee");
+            Map(m => m.name).Name("Employee").Default(string.Empty);
             Map(m => m.accountNum).Name("Bank Account Number").Default(-1);
             Map(m => m.routingNum).Name("ABA Routing Number").Default(-1);
             Map(m => m.accountType).Name("CHK/SAV").Default(string.Empty);
