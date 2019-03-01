@@ -5,7 +5,7 @@ generate direct deposit files from quickbooks payroll and employee reports
 
 |Field|Description|
 |-----|-----------|
-|File Creation Number|AutoIncremented \nYou can change it if you feel the need to, but it will not update the global value. (The auto increment will increment from the saved value next time)|
+|File Creation Number|AutoIncremented  You can change it if you feel the need to, but it will not update the global value. (The auto increment will increment from the saved value next time)|
 |Customer Number|Positive integer\n10 digits|
 |Originator Short Name|Alphanumeric\nMax 15 characters|
 ### Originator Long Name
