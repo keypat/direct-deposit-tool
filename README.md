@@ -21,9 +21,9 @@
 ### Payroll .csv file format example
 |EMPLOYEE|NUM|DATE|AMOUNT|ACCOUNT|MEMO|
 |--------|---|----|------|-------|----|
-|Keyur Patel|1234|2019-02-15|123.45|Bank of Nova Scotia 12345|Test memo|
+|Fake Name|1234|2019-02-15|123.45|Bank of Nova Scotia 12345|Test memo|
 
 ### Employee banking information .csv file format example
 |Employee|Bank Account Number|ABA Routing Number|CHK/SAV|
 |--------|-------------------|------------------|-------|
-|Keyur Patel|1234567|032156788|chk|
+|Fake Name|1234567|032156788|chk|
