@@ -42,16 +42,16 @@ namespace DirectDepositTool
         public IEnumerable<Credit> MergeData(IEnumerable<EmployeeBankingInfo> employeeBankingInfo, IEnumerable<Payroll> payrollItems, out IEnumerable<Credit> credits)
         {
             credits = payrollItems.Join(employeeBankingInfo,
-                    payroll => payroll.name,
+                    payroll => payroll.Name,
                     employee => employee.name,
                     (payrollItem, employee) => new Credit
                     {
-                        name = payrollItem.name,
-                        date = payrollItem.date,
+                        name = payrollItem.Name,
+                        date = payrollItem.Date,
                         accountNum = employee.accountNum.GetValueOrDefault(),
                         routingNum = employee.routingNum.GetValueOrDefault(),
-                        amount = payrollItem.amount,
-                        transNum = payrollItem.transNum.GetValueOrDefault()
+                        amount = payrollItem.Amount,
+                        transNum = payrollItem.TransNum.GetValueOrDefault()
                     })
                 .Where(x =>
                 {
