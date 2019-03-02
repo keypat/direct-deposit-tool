@@ -1,5 +1,7 @@
 ﻿using CsvHelper.Configuration;
 using System;
+using System.Globalization;
+using CsvHelper.TypeConversion;
 
 namespace DirectDepositTool
 {
@@ -17,12 +19,12 @@ namespace DirectDepositTool
     {
         public PayrollMap()
         {
-            Map(m => m.Name).Name("EMPLOYEE").Default(string.Empty);
-            Map(m => m.TransNum).Name("NUM").Default(-1L);
-            Map(m => m.Date).Name("DATE").Default(DateTime.Today.AddYears(1));
-            Map(m => m.Amount).Name("AMOUNT").Default(0.0m);
-            Map(m => m.Account).Name("ACCOUNT").Default(string.Empty);
-            Map(m => m.Memo).Name("MEMO").Default(string.Empty);
+            Map(m => m.Name).Name("Employee").Default(string.Empty);
+            Map(m => m.TransNum).Name("Num").Default(-1L);
+            Map(m => m.Date).Name("Date").Default(DateTime.Today.AddYears(1));
+            Map(m => m.Amount).Name("Amount").Default(0.0m).TypeConverterOption.NumberStyles(NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
+            Map(m => m.Account).Name("Account").Default(string.Empty);
+            Map(m => m.Memo).Name("Memo").Default(string.Empty);
         }
     }
 }

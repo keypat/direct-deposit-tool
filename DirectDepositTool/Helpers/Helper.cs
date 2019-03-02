@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using CsvHelper;
+using CsvHelper.TypeConversion;
 using DirectDepositTool.Properties;
 using Microsoft.Win32;
 
@@ -28,6 +29,8 @@ namespace DirectDepositTool.Helpers
         public void ParseFiles(out IEnumerable<EmployeeBankingInfo> employeeBankingInfo,
             out IEnumerable<Payroll> payrollItems, string employeeBankingFileName = null, string payrollFileName = null)
         {
+            TypeConverterOptionsCache y = new TypeConverterOptionsCache();
+            y.GetOptions(typeof(decimal));
             using (var reader = new StreamReader(employeeBankingFileName ?? throw new ArgumentNullException(nameof(employeeBankingFileName))))
             using (var csv = new CsvReader(reader))
             {
