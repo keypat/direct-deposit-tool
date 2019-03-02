@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DirectDepositTool.Properties;
 
-namespace DirectDepositTool
+namespace DirectDepositTool.Helpers
 {
     internal class Scotia105Helper : Helper
     {
@@ -96,7 +96,7 @@ namespace DirectDepositTool
         {
             var row = "C200" + $"{c.amount * 100:0}".PadLeft(10, '0') +
                       GetJulianDateString(c.date) + c.routingNum.ToString("D8") +
-                      c.accountNum.ToString("D12") + c.name.PadRight(30) +
+                      c.accountNum.PadRight(12) + c.name.PadRight(30) +
                       c.transNum.ToString().PadRight(19) + c.transNum.ToString().PadRight(16);
 
             ValidateAndAddRow(row);

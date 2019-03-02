@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
+using DirectDepositTool.Helpers;
 
 namespace DirectDepositTool
 {
     public partial class MainWindow
     {
-        private IEnumerable<Credit> _credits;
         private string _payrollFileName = @"TestData/testPayroll.csv";
         private string _employeeBankingFileName = @"TestData/testEmployees.csv";
         private readonly Helper _helper = new Scotia105Helper();

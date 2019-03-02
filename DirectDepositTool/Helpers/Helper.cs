@@ -9,7 +9,7 @@ using CsvHelper;
 using DirectDepositTool.Properties;
 using Microsoft.Win32;
 
-namespace DirectDepositTool
+namespace DirectDepositTool.Helpers
 {
     internal class Helper
     {
@@ -46,24 +46,61 @@ namespace DirectDepositTool
         {
             credits = payrollItems.Join(employeeBankingInfo,
                     payroll => payroll.Name,
-                    employee => employee.name,
+                    employee => employee.Name,
                     (payrollItem, employee) => new Credit
                     {
                         name = payrollItem.Name,
                         date = payrollItem.Date,
-                        accountNum = employee.accountNum.GetValueOrDefault(),
-                        routingNum = employee.routingNum.GetValueOrDefault(),
+                        accountNum = employee.AccountNum,
+                        routingNum = employee.RoutingNum,
                         amount = payrollItem.Amount,
-                        transNum = payrollItem.TransNum.GetValueOrDefault()
+                        transNum = payrollItem.TransNum
                     })
-                .Where(x =>
-                {
-                    if (x.routingNum >= 0 && x.accountNum >= 0) return true;
-                    Log.Warn($"Excluding Transaction {x.transNum} for {x.name} because of missing or invalid banking info.");
-                    return false;
-
-                }).ToList();
+                .Where(ValidateMergedCredit).ToList();
             return credits;
+        }
+
+        public bool ValidateMergedCredit(Credit c)
+        {
+            var msgs = new List<string>();
+            if (!c.name.All(x=>char.IsLetterOrDigit(x)||char.IsWhiteSpace(x)) || 
+                c.name.Length>30 || string.IsNullOrEmpty(c.name))
+            {
+                msgs.Add($"name (value:{c.name})");
+            }
+            if (c.routingNum < 100001 || c.routingNum>99999999)
+            {
+                msgs.Add($"routing number (value:{c.routingNum})");
+            }
+            var acc = c.accountNum;
+            if (string.IsNullOrEmpty(acc) || acc.Length > 12 || 
+                !acc.All(x => char.IsLetterOrDigit(x) || char.IsWhiteSpace(x)))
+            {
+                msgs.Add($"account number (value:{c.accountNum})");
+            }
+            if (0.0m == c.amount || c.amount > 99999999.99m)
+            {
+                msgs.Add($"amount (value:{c.amount})");
+            }
+
+            if (c.transNum < 0)
+            {
+                msgs.Add($"transaction number (value:{c.transNum})");
+            }
+
+            var diff = (DateTime.Today - c.date).TotalDays;
+
+            if (diff < -60 || diff > 30)
+            {
+                msgs.Add($"date (value:{c.date})");
+            }
+
+            if (!msgs.Any()) return true;
+
+            var title = $"\n\t\t\tExcluding Transaction number:{c.transNum} for name:{c.name} because of the following missing or invalid fields:\n\t\t\t\t\t";
+            var finalMsg = title + string.Join("\n\t\t\t\t\t", msgs.ToArray());
+            Log.Warn(finalMsg);
+            return false;
         }
 
         public bool ValidateInputs(MainWindow mw)
