@@ -19,7 +19,7 @@
 
 ## Appendix A
 ### Payroll .csv file format example
-|EMPLOYEE|NUM|DATE|AMOUNT|ACCOUNT|MEMO|
+|Employee|Num|Date|Amount|Account|Memo|
 |--------|---|----|------|-------|----|
 |Fake Name|1234|2019-02-15|123.45|Bank of Nova Scotia 12345|Test memo|
 
