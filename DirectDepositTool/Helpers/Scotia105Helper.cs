@@ -77,8 +77,8 @@ namespace DirectDepositTool.Helpers
         private void CreateARecord(MainWindow mw)
         {
             var row = "A000000001" + mw.CustomerNumber.Text.PadLeft(10, '0') +
-                      "00220D" + Settings.Default.FileCreationNumber.ToString("D4") + GetJulianDateString(DateTime.Today) +
-                      string.Empty.PadRight(69);
+                      Settings.Default.FileCreationNumber.ToString("D4") + GetJulianDateString(DateTime.Today) +
+                      "00220D" + string.Empty.PadRight(69);
 
             ValidateAndAddRow(row);
         }
@@ -86,7 +86,7 @@ namespace DirectDepositTool.Helpers
         private void CreateYRecord(MainWindow mw)
         {
             var row = "Y" + mw.OrigShortName.Text.PadRight(15) + mw.OrigLongName.Text.PadRight(30) +
-                      "002" + mw.ReturnBranchTransitNum.Text + mw.ReturnAccountNum.Text.PadLeft(12, '0') +
+                      "002" + mw.ReturnBranchTransitNum.Text + mw.ReturnAccountNum.Text.PadRight(12) +
                       string.Empty.PadRight(39);
 
             ValidateAndAddRow(row);
@@ -109,10 +109,9 @@ namespace DirectDepositTool.Helpers
         {
             var row = "Z".PadRight(10) + mw.CustomerNumber.Text.PadLeft(10, '0') +
                       Settings.Default.FileCreationNumber.ToString("D4") + 0.ToString("D22") +
-                      $"{_creditTotalValue:0}".PadLeft(14, '0') +
+                      $"{_creditTotalValue*100:0}".PadLeft(14, '0') +
                       _creditTotalItems.ToString("D8") +
                       string.Empty.PadRight(37);
-
             ValidateAndAddRow(row);
         }
 
